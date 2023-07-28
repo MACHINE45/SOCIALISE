@@ -10,7 +10,10 @@ import path from "path";
 import  { fileURLToPath } from "url";
 import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
+import postRoutes from "./routes/posts.js";
 import { register } from "./controller/auth.js";
+import { createPost } from "./controller/posts.js";
+import { verifyToken } from "./middleware/auth.js";
 
 /* CONFIGURATION */
 
@@ -36,7 +39,7 @@ const storage = multer.diskStorage({
     },
     filename:  function (req, file, cb) {
         cb(null,file.originalname);
-    }
+    },
 });  
 
 const upload = multer({ storage });
@@ -44,10 +47,13 @@ const upload = multer({ storage });
 /*  ROUTES WITH FILES*/
 
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
+
 
 /*  ROUTES */
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
+app.use("/posts", postRoutes);
 
 
 /* MONGOOSE SETUP */
