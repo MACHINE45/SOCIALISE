@@ -72,15 +72,15 @@ import {
               borderRadius: "2rem",
               padding: "1rem 2rem",
             }}
-//           />
-//         </FlexBetween>
-//         {isImage && (
-//           <Box
-//             border={`1px solid ${medium}`}
-//             borderRadius="5px"
-//             mt="1rem"
-//             p="1rem"
-//           >
+          />
+        </FlexBetween>
+        {isImage && (
+          <Box
+            border={`1px solid ${medium}`}
+            borderRadius="5px"
+            mt="1rem"
+            p="1rem"
+          >
 //             <Dropzone
 //               acceptedFiles=".jpg,.jpeg,.png"
 //               multiple={false}
